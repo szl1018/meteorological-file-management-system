@@ -1,12 +1,15 @@
-# 后端开发完成说明
+# meteorological-file-management-system
+气象局文件上传下载管理系统
 
-## ✅ 后端代码开发完成
+## 后端开发完成说明
 
-后端Spring Boot项目已全部开发完成，包含所有必要的Controller、Service、Mapper等组件。
+### 后端Spring Boot项目已全部开发完成
+
+后端代码包含所有必要的Controller、Service、Mapper等组件。
 
 ---
 
-## 📂 完成的文件列表
+## 完成的文件列表
 
 ### 1. Controller层 (5个)
 
@@ -52,39 +55,16 @@
 | ✅ | `resources/mapper/FileMapper.xml` | 文件MyBatis映射 |
 | ✅ | `resources/mapper/LogMapper.xml` | 日志MyBatis映射 |
 
-### 6. 配置类 (2个已更新)
+### 6. 配置类 (2个)
 
 | 文件 | 路径 | 说明 |
 |------|------|------|
 | ✅ | `config/WebMvcConfig.java` | Web配置（已添加拦截器注册） |
 | ✅ | `config/MyBatisPlusConfig.java` | MyBatis Plus配置 |
 
-### 7. 其他已存在的文件
-
-- ✅ 实体类（Entity）: 3个
-- ✅ DTO类: 3个
-- ✅ VO类: 2个
-- ✅ 枚举类: 2个
-- ✅ 工具类: 2个
-- ✅ 拦截器: 2个
-- ✅ 异常处理: 2个
-- ✅ 配置文件: 3个
-- ✅ 启动类: 1个
-
 ---
 
-## 📊 统计信息
-
-| 类型 | 数量 | 说明 |
-|------|------|------|
-| **Java文件** | 50+ | 所有业务代码文件 |
-| **XML文件** | 3 | MyBatis映射文件 |
-| **配置文件** | 3 | application.yml等 |
-| **总代码量** | ~3500行 | 包含注释和空行 |
-
----
-
-## 🎯 功能实现状态
+## 功能实现状态
 
 ### 认证模块
 | 功能 | 状态 | 说明 |
@@ -123,7 +103,7 @@
 
 ---
 
-## 🚀 启动前准备
+## 启动前准备
 
 ### 1. Oracle数据库准备
 
@@ -136,13 +116,6 @@ sqlplus file_system/file_system
 # 检查表是否创建
 SELECT TABLE_NAME FROM USER_TABLES;
 -- 应该看到: SYS_USERS, SYS_FILES, SYS_OPERATION_LOGS
-
-# 检查序列
-SELECT SEQUENCE_NAME FROM USER_SEQUENCES;
--- 应该看到: SEQ_SYS_USERS, SEQ_SYS_FILES, SEQ_SYS_LOGS
-
-# 检查默认管理员账号
-SELECT * FROM SYS_USERS WHERE USERNAME = 'admin';
 ```
 
 ### 2. 配置文件检查
@@ -158,35 +131,19 @@ spring:
       password: file_system
 ```
 
-### 3. Maven依赖检查
-
-确保Oracle JDBC驱动可用：
-
-```bash
-mvn dependency:resolve
-```
-
 ---
 
-## 🎮 启动步骤
+## 启动步骤
 
-### 方式一：使用Maven命令
+### 使用Maven命令
 
 ```bash
-cd D:\气象局上传下载系统\backend
-
 # 清理并编译
 mvn clean compile
 
 # 启动应用
 mvn spring-boot:run
 ```
-
-### 方式二：使用IDE运行
-
-1. 在IDE中打开项目
-2. 找到 `FileSystemApplication.java`
-3. 右键选择 "Run" 或 "Debug"
 
 ### 启动成功标志
 
@@ -201,64 +158,15 @@ mvn spring-boot:run
 
 ---
 
-## 🧪 测试接口
+## 测试接口
 
-### 1. 测试登录（使用Postman或curl）
+### 测试登录
 
 ```bash
 curl -X POST http://localhost:8080/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username":"admin","password":"admin123"}'
 ```
-
-### 2. 测试其他接口
-
-登录成功后，使用返回的Cookie访问其他接口：
-
-- GET `/api/files` - 获取文件列表
-- GET `/api/users` - 获取用户列表（管理员）
-- GET `/api/logs` - 获取操作日志（管理员）
-
----
-
-## ⚠️ 常见问题
-
-### 1. Oracle驱动找不到
-
-**错误**: `ClassNotFoundException: oracle.jdbc.OracleDriver`
-
-**解决**: 安装Oracle JDBC驱动到本地Maven仓库
-
-```bash
-mvn install:install-file -Dfile=path/to/ojdbc8.jar \
-  -DgroupId=com.oracle.database.jdbc \
-  -DartifactId=ojdbc8 \
-  -Dversion=19.8.0.0 \
-  -Dpackaging=jar
-```
-
-### 2. 数据库连接失败
-
-**错误**: `ORA-01017: invalid username/password`
-
-**解决**: 检查 `application-dev.yml` 中的数据库连接配置
-
-### 3. 序列不存在
-
-**错误**: `ORA-02289: sequence does not exist`
-
-**解决**: 执行数据库初始化脚本 `database/oracle_init.sql`
-
----
-
-## 📋 下一步
-
-1. ✅ **后端代码开发** - 已完成
-2. ✅ **前端代码开发** - 已完成
-3. ⏳ **启动Oracle数据库**
-4. ⏳ **启动后端服务**
-5. ⏳ **启动前端服务**
-6. ⏳ **完整功能测试**
 
 ---
 
