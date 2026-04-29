@@ -1,0 +1,16 @@
+# 开发环境配置
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    druid:
+      url: jdbc:oracle:thin:@localhost:1521:xe
+      username: file_system
+      password: file_system
+
+logging:
+  level:
+    com.filesystem: debug
+    com.filesystem.mapper: debug

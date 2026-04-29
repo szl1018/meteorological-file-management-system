@@ -1,0 +1,20 @@
+# 生产环境配置
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    druid:
+      url: jdbc:oracle:thin:@your-oracle-server:1521:orcl
+      username: ${DB_USERNAME:file_system}
+      password: ${DB_PASSWORD:}
+
+logging:
+  level:
+    com.filesystem: info
+    com.filesystem.mapper: info
+  file:
+    name: /var/log/file-system/application.log
+    max-size: 100MB
+    max-history: 30
